@@ -7,10 +7,9 @@ using System.Xml.Linq;
 
 namespace Lesson15
 {
-
     class FileReceipt
     {
-        private string _receiptFile; //приватні поля прийнятописати через _
+        private string _receiptFile; 
         private Receipt[] _receipt;
         private Buyer [] _buyer;
 
@@ -22,14 +21,14 @@ namespace Lesson15
 
         public void AddReceipt(Receipt newReceipt)
         {
-            int contactIndex = GetBuyerIndexByName(name);
+           // int contactIndex = GetBuyerIndexByName(name);
 
-            Array.Resize(ref _receipt, _receipt.Length + 1); //ref аргумент передається по ссилці
+            Array.Resize(ref _receipt, _receipt.Length + 1); 
             _receipt[^1] = newReceipt;
 
         }
 
-        private int GetBuyerIndexByName(string searchQuery)
+ /*       private int GetBuyerIndexByName(string searchQuery)
         {
             for (int i = 0; i < _buyer.Length; ++i)
             {
@@ -40,7 +39,7 @@ namespace Lesson15
                 }
             }
             return -1;
-        }
+        }*/
 
         public bool SaveToFile()
         {

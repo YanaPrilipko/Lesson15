@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Рoзробка С#\\Lesson14\\Lesson15\\Lesson15\\Lesson15.csproj": {}
+    "D:\\Рoзробка С#\\Lesson15\\Lesson15\\Lesson15\\Lesson15.csproj": {}
   },
   "projects": {
-    "D:\\Рoзробка С#\\Lesson14\\Lesson15\\Lesson15\\Lesson15.csproj": {
+    "D:\\Рoзробка С#\\Lesson15\\Lesson15\\Lesson15\\Lesson15.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Рoзробка С#\\Lesson14\\Lesson15\\Lesson15\\Lesson15.csproj",
+        "projectUniqueName": "D:\\Рoзробка С#\\Lesson15\\Lesson15\\Lesson15\\Lesson15.csproj",
         "projectName": "Lesson15",
-        "projectPath": "D:\\Рoзробка С#\\Lesson14\\Lesson15\\Lesson15\\Lesson15.csproj",
+        "projectPath": "D:\\Рoзробка С#\\Lesson15\\Lesson15\\Lesson15\\Lesson15.csproj",
         "packagesPath": "C:\\Users\\Яна\\.nuget\\packages\\",
-        "outputPath": "D:\\Рoзробка С#\\Lesson14\\Lesson15\\Lesson15\\obj\\",
+        "outputPath": "D:\\Рoзробка С#\\Lesson15\\Lesson15\\Lesson15\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Яна\\AppData\\Roaming\\NuGet\\NuGet.Config",

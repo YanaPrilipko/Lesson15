@@ -9,7 +9,7 @@ namespace Lesson15
 {
     class FileProduct
     {
-        private string _productsFile; //приватні поля прийнятописати через _
+        private string _productsFile; 
         private Product[] _product;
 
         public FileProduct(string file)
@@ -20,7 +20,7 @@ namespace Lesson15
 
         public void AddProduct(Product newProduct)
         {
-            Array.Resize(ref _product, _product.Length + 1); //ref аргумент передається по ссилці
+            Array.Resize(ref _product, _product.Length + 1); 
             _product[^1] = newProduct;
         }
 

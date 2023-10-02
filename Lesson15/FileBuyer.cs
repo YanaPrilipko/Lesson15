@@ -8,7 +8,7 @@ namespace Lesson15
 {
     class FileBuyer
     {
-        private string _buyerFile; //приватні поля прийнятописати через _
+        private string _buyerFile; 
         private Buyer[] _buyer;
 
         public FileBuyer(string file)
@@ -19,7 +19,7 @@ namespace Lesson15
 
         public void AddBuyer(Buyer newBuyer)
         {
-            Array.Resize(ref _buyer, _buyer.Length + 1); //ref аргумент передається по ссилці
+            Array.Resize(ref _buyer, _buyer.Length + 1); 
             _buyer[^1] = newBuyer;
            
         }
