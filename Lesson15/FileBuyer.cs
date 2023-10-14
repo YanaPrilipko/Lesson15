@@ -34,7 +34,7 @@ namespace Lesson15
                 {
                     lines[i] = $"{_buyer[i].Id},{_buyer[i].Name},{_buyer[i].Phone}";
                 }
-                File.WriteAllLines(_buyerFile, lines);
+                File.WriteAllLines(@"D:\Рoзробка С#\Lesson15\Lesson15\Lesson15\bin\Debug\net6.0\buyer.txt", lines);
 
                 return true;
             }
@@ -72,11 +72,15 @@ namespace Lesson15
             var buyer = new Buyer[records.Length];
             for (int i = 0; i < records.Length; ++i)
             {
-                string[] array = records[i].Split(',');
-                if (array.Length != 1)
+                if (!string.IsNullOrEmpty(records[i]))
                 {
-                    buyer[i] = new Buyer(int.Parse(array[0]) ,array[1], array[2]);
+                    string[] array = records[i].Split(',');
+                    if (array.Length != 1)
+                    {
+                        buyer[i] = new Buyer(Guid.Parse(array[0]), array[1], array[2]);
+                    }
                 }
+                
             }
             return buyer;
         }

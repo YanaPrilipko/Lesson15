@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Lesson15
 {
-    public record Product(int Id,string Name, int Quantity, decimal Price)
+    public record Product(Guid Id, string Name, decimal Price)
     {
-        public override string ToString() => $"{Id}, {Name}, {Quantity}, {Price}";
+        public override string ToString() => $"{Id}, {Name}, {Price}";
     }
 }

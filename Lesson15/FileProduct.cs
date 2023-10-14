@@ -24,16 +24,17 @@ namespace Lesson15
             _product[^1] = newProduct;
         }
 
-        public bool SaveToFile()
+        public bool SaveToFileProduct()
         {
             try
             {
                 string[] lines = new string[_product.Length];
+
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    lines[i] = $"{_product[i].id},{_product[i].Name},{_product[i].Quantity},{_product[i].Price}";
+                    lines[i] = $"{_product[i].Id},{_product[i].Name},{_product[i].Price}";
                 }
-                File.WriteAllLines(_productsFile, lines);
+                File.WriteAllLines(@"D:\Рoзробка С#\Lesson15\Lesson15\Lesson15\bin\Debug\net6.0\products.txt", lines);
 
                 return true;
             }
@@ -42,6 +43,9 @@ namespace Lesson15
                 return false;
             }
         }
+
+
+        public Product[] GetAllProduct() => _product;
 
         public static FileProduct ReadProductFile(string fileName)
         {
@@ -74,7 +78,7 @@ namespace Lesson15
                 string[] array = records[i].Split(',');
                 if (array.Length != 1)
                 {
-                    product[i] = new Product(int.Parse(array[0]),array[1], int.Parse(array[2]), decimal.Parse(array[3]));
+                    product[i] = new Product(Guid.Parse(array[0]), array[1], decimal.Parse(array[2]));
                 }
             }
             return product;

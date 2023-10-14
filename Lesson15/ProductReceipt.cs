@@ -8,7 +8,13 @@ namespace Lesson15
 {
     public class ProductReceipt
     {
-        public Receipt ReceiptId { get; set; }
-        public Product ProductId { get; set; }
+        public Guid ReceiptId { get; set; }
+        public Guid ProductId { get; set; }
+        public ProductReceipt( Guid receiptId, Guid productId)
+        {
+            ReceiptId = receiptId;
+            ProductId = productId;
+        }
+        public override string ToString() => $"{ReceiptId}, {ProductId}";
     }
 }

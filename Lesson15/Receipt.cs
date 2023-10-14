@@ -8,12 +8,20 @@ namespace Lesson15
 {
     public class Receipt
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime Date { get; set; }
-        public Buyer Buyer { get; set; }
-        public Buyer BuyerId { get; set; }
-        public Product[] Product { get; set; }
-        public Product ProductId { get; set; }
-        public decimal TotalAmount { get;  }
+        public Guid BuyerId { get; set; }
+        public int Quantity { get; set; }
+        public decimal TotalAmount { get; set; }
+
+        public Receipt(Guid id, DateTime date, Guid buyerId, int quantity, decimal totalAmount)
+        {
+            Id = id;
+            Date = date;
+            BuyerId = buyerId;
+            Quantity = quantity;
+            TotalAmount = totalAmount;
+        }
+        public override string ToString() => $"{Id}, {Date}, {BuyerId}, {Quantity}, {TotalAmount}";
     }
 }
