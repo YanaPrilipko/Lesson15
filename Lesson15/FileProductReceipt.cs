@@ -6,37 +6,20 @@ using System.Threading.Tasks;
 
 namespace Lesson15
 {
-    class FileProductReceipt
+    public class FileProductReceipt : FileDataStorage<ProductReceipt>
     {
-       // private string _productReceiptFile;
-        private ProductReceipt[] _productReceipt;
+        public FileProductReceipt(string fileName) : base(fileName) { }
 
-        public FileProductReceipt(string file)
-        {
-          //  _productReceiptFile = file;
-            _productReceipt = new ProductReceipt[0];
-        }
-
-        public void AddProductReceipt(ProductReceipt newProductReceipt)
-        {
-            Array.Resize(ref _productReceipt, _productReceipt.Length + 1);
-            _productReceipt[^1] = newProductReceipt;
-        }
-
-
-        public bool SaveToFile()
+        public override bool SaveToFile(string fileName)
         {
             try
             {
-                string[] lines = new string[_productReceipt.Length];
+                string[] lines = new string[_data.Length];
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    if (_productReceipt[i] != null)
-                    {
-                        lines[i] = $"{_productReceipt[i].ReceiptId},{_productReceipt[i].ProductId}";
-                    }
+                    lines[i] = $"{_data[i].ReceiptId},{_data[i].ProductId}";
                 }
-                File.WriteAllLines(@"D:\Рoзробка С#\Lesson15\Lesson15\Lesson15\bin\Debug\net6.0\product_receipt.txt", lines);
+                File.WriteAllLines(fileName, lines);
                 return true;
             }
             catch
@@ -44,43 +27,5 @@ namespace Lesson15
                 return false;
             }
         }
-
-        public static FileProductReceipt ReadProductReceiptFile(string fileName)
-        {
-            string[] lines = ReadDatabaseAllTextReceipt(fileName);
-
-            return new FileProductReceipt(fileName)
-            {
-                _productReceipt = ConvertStringsToReceipt(lines),
-            };
-        }
-        public ProductReceipt[] GetAllProductReceipt() => _productReceipt;
-        private static string[] ReadDatabaseAllTextReceipt(string file)
-        {
-            try
-            {
-                return File.ReadAllLines(file);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return new string[0];
-            }
-        }
-
-        private static ProductReceipt[] ConvertStringsToReceipt(string[] records)
-        {
-            var receipt = new ProductReceipt[records.Length];
-            for (int i = 0; i < records.Length; ++i)
-            {
-                string[] array = records[i].Split(',');
-                if (array.Length != 1)
-                {
-                    receipt[i] = new ProductReceipt(Guid.Parse(array[0]), Guid.Parse(array[1]));
-                }
-            }
-            return receipt;
-        }
-
     }
 }

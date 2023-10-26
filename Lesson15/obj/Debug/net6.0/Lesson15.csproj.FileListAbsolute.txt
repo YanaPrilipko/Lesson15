@@ -14,7 +14,6 @@ D:\Рoзробка С#\Lesson14\Lesson15\Lesson15\obj\Debug\net6.0\Lesson15.pdb
 D:\Рoзробка С#\Lesson14\Lesson15\Lesson15\obj\Debug\net6.0\Lesson15.genruntimeconfig.cache
 D:\Рoзробка С#\Lesson14\Lesson15\Lesson15\obj\Debug\net6.0\ref\Lesson15.dll
 D:\Рoзробка С#\Lesson14\Lesson15\Lesson15\bin\Debug\net6.0\buyer.txt
-D:\Рoзробка С#\Lesson15\Lesson15\Lesson15\obj\Debug\net6.0\Lesson15.csproj.AssemblyReference.cache
 D:\Рoзробка С#\Lesson15\Lesson15\Lesson15\obj\Debug\net6.0\Lesson15.GeneratedMSBuildEditorConfig.editorconfig
 D:\Рoзробка С#\Lesson15\Lesson15\Lesson15\obj\Debug\net6.0\Lesson15.AssemblyInfoInputs.cache
 D:\Рoзробка С#\Lesson15\Lesson15\Lesson15\obj\Debug\net6.0\Lesson15.AssemblyInfo.cs

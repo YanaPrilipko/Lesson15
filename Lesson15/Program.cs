@@ -13,12 +13,13 @@ namespace Lesson15
         static FileReceipt _receipt;
         static FileProductReceipt _productReceipt;
 
+
         static void Main(string[] args)
         {
-            _product = FileProduct.ReadProductFile(args.Length == 0 ? "products.txt" : args[0]);
-            _buyer = FileBuyer.ReadBuyerFile(args.Length == 0 ? "buyer.txt" : args[0]);
-            _receipt = FileReceipt.ReadReceiptFile(args.Length == 0 ? "receipts.txt" : args[0]);
-            _productReceipt = FileProductReceipt.ReadProductReceiptFile(args.Length == 0 ? "product_receipt.txt" : args[0]);
+            _buyer = new FileBuyer(args.Length == 0 ? "buyer.txt" : args[0]);
+            _product = new FileProduct(args.Length == 0 ? "products.txt" : args[0]);
+            _receipt = new FileReceipt(args.Length == 0 ? "receipts.txt" : args[0]);
+            _productReceipt = new FileProductReceipt(args.Length == 0 ? "product_receipt.txt" : args[0]);
 
             while (true)
             {
@@ -46,13 +47,14 @@ namespace Lesson15
             return new Product(id, productName, productPrice);
         }
 
+
         static Receipt ReadReceiptConsole()
         {
             Guid id = Guid.NewGuid();
             DateTime date = DateTime.Now;
             Console.WriteLine("Select a buyer:");
 
-            var all = _buyer.GetAllBuyers();
+            var all = _buyer.GetAllData();
             for (int i = 0; i < all.Length; ++i)
             {
                 Console.WriteLine($"{i + 1}: {all[i]}");
@@ -68,15 +70,14 @@ namespace Lesson15
             Guid receiptId = receipt.Id;
 
             Console.WriteLine("Select a product:");
-            var product = _product.GetAllProduct();
-            for (int i = 0; i < product.Length; ++i)
+            var products = _product.GetAllData();
+            for (int i = 0; i < products.Length; ++i)
             {
-                Console.WriteLine($"{i + 1}: {product[i]}");
+                Console.WriteLine($"{i + 1}: {products[i]}");
             }
 
             int productIndex = int.Parse(Console.ReadLine());
-            var productId = product[productIndex - 1].Id;
-
+            var productId = products[productIndex - 1].Id;
 
             return new ProductReceipt(receiptId, productId);
         }
@@ -84,30 +85,24 @@ namespace Lesson15
 
         static void ReceiptsPrint()
         {
-            var receiptFile = _receipt.GetAllReceipt();
-            var buyerFile = _buyer.GetAllBuyers();
-            var productFile = _product.GetAllProduct();
-            var productReceiptFile = _productReceipt.GetAllProductReceipt();
+            var receiptData = _receipt.GetAllData();
+            var buyerData = _buyer.GetAllData();
+            var productData = _product.GetAllData();
+            var productReceiptData = _productReceipt.GetAllData();
 
-            foreach (var reciepes in receiptFile)
+            foreach (var receipt in receiptData)
             {
-                var buyer = buyerFile.Where(c => c.Id == reciepes.BuyerId).FirstOrDefault();
-                Console.WriteLine("Recipe  = " + reciepes.Id + " Date = " + reciepes.Date + " Buyer = " + buyer.Name );
+                var buyer = buyerData.FirstOrDefault(b => b.Id == receipt.BuyerId);
+                Console.WriteLine("Receipt = " + receipt.Id + " Date = " + receipt.Date + " Buyer = " + buyer.Name);
 
-                var productReceipts = productReceiptFile.Where(c=>c.ReceiptId == reciepes.Id).FirstOrDefault();
+                var productReceipts = productReceiptData.Where(pr => pr.ReceiptId == receipt.Id);
 
-
-                foreach(var item in productReceiptFile)
+                foreach (var productReceipt in productReceipts)
                 {
-                    if(item.ReceiptId == reciepes.Id)
-                    {
-                        var product = productFile.Where(c => c.Id == item.ProductId).FirstOrDefault();
-                        Console.WriteLine('\n' + "product name = " + product.Name  );
-                    }
+                    var product = productData.FirstOrDefault(p => p.Id == productReceipt.ProductId);
+                    Console.WriteLine('\n' + "Product name = " + product.Name);
                 }
-                
             }
-
         }
         static void UserInteraction()
         {
@@ -143,24 +138,24 @@ namespace Lesson15
             switch (input)
             {
                 case 1:
-                    _product.AddProduct(ReadProductConsole());
-                    _product.SaveToFileProduct();
+                    _product.AddData(ReadProductConsole());
+                    _product.SaveToFile(_product._fileName);
                     break;
                 case 2:
-                    _buyer.AddBuyer(ReadBuyerConsole());
-                    _buyer.SaveToFile();
+                    _buyer.AddData(ReadBuyerConsole());
+                    _buyer.SaveToFile(_buyer._fileName);
                     break;
                 case 3:
                     var receipt = ReadReceiptConsole();
-                    _receipt.AddReceipt(receipt);
-                    _receipt.SaveToFile();
+                    _receipt.AddData(receipt);
+                    _receipt.SaveToFile(_receipt._fileName);
 
                     string continueAdding = "";
                     do
                     {
                         var productReceipt = ReadFileProductReceiptConsole(receipt);
-                        _productReceipt.AddProductReceipt(productReceipt);
-                        _productReceipt.SaveToFile();
+                        _productReceipt.AddData(productReceipt);
+                        _productReceipt.SaveToFile(_productReceipt._fileName);
 
                         Console.WriteLine("Would you like to add more items to the console? (yes/no)");
                         continueAdding = Console.ReadLine();
